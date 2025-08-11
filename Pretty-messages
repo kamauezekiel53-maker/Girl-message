@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send a Pretty Message</title>
+  <style>
+    body { background: #ffe4ec; font-family: Arial, sans-serif; text-align: center; padding-top: 60px; }
+    .box { background: #fff; padding: 2em; border-radius: 16px; display: inline-block; box-shadow: 0 4px 16px #d6336c44; }
+    .link { margin-top: 20px; display: none; }
+    .pretty { color: #d6336c; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Send a Pretty Message 💖</h2>
+    <input id="yourName" type="text" placeholder="Enter your name" />
+    <button onclick="generateLink()">Get Link</button>
+    <div class="link" id="linkBox">
+      <p>Share this link:</p>
+      <input id="messageLink" type="text" readonly style="width:90%;" />
+      <button onclick="copyLink()">Copy Link</button>
+    </div>
+  </div>
+
+  <script>
+    function generateLink() {
+      const name = encodeURIComponent(document.getElementById('yourName').value.trim());
+      if (!name) {
+        alert("Please enter your name!");
+        return;
+      }
+      // Your GitHub Pages URL, update with your username
+      const baseUrl = "https://kamauezekiel53-maker.github.io/pretty-message/?name=";
+      const link = baseUrl + name;
+      document.getElementById('messageLink').value = link;
+      document.getElementById('linkBox').style.display = "block";
+    }
+    function copyLink() {
+      const input = document.getElementById('messageLink');
+      input.select();
+      document.execCommand('copy');
+      alert('Link copied!');
+    }
+  </script>
+</body>
+</html>
